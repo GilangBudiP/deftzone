@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Tailwindcss</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./js/tiny-slider/tiny-slider.css">
+    <link rel="stylesheet" href="./icons.css">
+    <link rel="stylesheet" href="./output.css">
+</head>
+<body class="">
+    <!-- header start -->
+    <!-- overlay navbar start -->
+    
+    <!-- overlay navbar end -->
+    <header class="absolute top-0 left-0 z-10 flex items-center w-full bg-transparent">
+        <div id="nav-menu" class="fixed z-20 flex items-center self-start justify-center hidden w-screen h-screen duration-700 md:hidden bg-sky-600">
+            <div class="flex flex-col space-y-3 text-xl font-light text-center text-white font-karla">
+                <a class="font-normal duration-300 hover:text-amber-300" href="index.html#">Home</a>
+                <a class="font-normal duration-300 hover:text-amber-300" href="index.html#about">About Us</a>
+                <a class="font-normal duration-300 hover:text-amber-300" href="index.html#service">Service</a>
+                <a class="font-normal duration-300 hover:text-amber-300" href="index.html#blog">Blog</a>
+                <a class="font-normal duration-300 hover:text-amber-300" href="index.html#contact">Contact Us</a>
+            </div>
+        </div>
+        <div class="container">
+            <div class="relative flex items-center justify-between">
+                <div class="px-4 py-4">
+                    <img src="./img/logo.png" class="max-h-12" alt="">
+                    <!-- <a href="#home" class="block py-6 text-lg font-bold text-blue-100">
+                        Deft Zone
+                    </a> -->
+                </div>
+                <div class="flex items-center px-4">
+                    <button id="hamburger" name="hamburger" type="button" class="absolute z-30 block right-4 lg:hidden">
+                        <span class="transition duration-300 ease-in-out origin-top-left hamburger-line "></span>
+                        <span class="transition duration-300 ease-in-out hamburger-line"></span>
+                        <span class="transition duration-300 ease-in-out origin-bottom-left hamburger-line"></span>
+                    </button>
+
+                    <nav class="hidden absolute py-5 bg-white shadow-lg lg:shadow-none rounded-lg lg:rounded-none max-2-[250px] w-full right-4 top-full lg:block lg:static lg:max-w-full lg:bg-transparent">
+                        <ul class="block lg:flex font-karla">
+                            <li class="group">
+                                <a href="#home" class="flex py-2 mx-5 text-sm font-semibold uppercase text-teal-50 group-hover:text-amber-300">Home</a>
+                            </li>
+                            <li class="group">
+                                <a href="#about" class="flex py-2 mx-5 text-sm font-semibold uppercase text-teal-50 group-hover:text-amber-300">About Us</a>
+                            </li>
+                            <li class="group">
+                                <a href="#service" class="flex py-2 mx-5 text-sm font-semibold uppercase text-teal-50 group-hover:text-amber-300">Service</a>
+                            </li>
+                            <li class="group">
+                                <a href="#blog" class="flex py-2 mx-5 text-sm font-semibold uppercase text-teal-50 group-hover:text-amber-300">Blog</a>
+                            </li>
+                            <li class="group">
+                                <a href="#contact" class="flex py-2 mx-5 text-sm font-semibold uppercase text-teal-50 group-hover:text-amber-300">Contact</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header end -->
+
+    <section id="content" class="h-screen">
+        
+    </section>
+
+    <footer class="relative text-gray-200 bg-slate-900">    
+        <div class="container">
+            <div class="grid grid-cols-12">
+                <div class="col-span-12">
+                    <div class="py-[60px] px-0">
+                        <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
+                            <div class="lg:col-span-4 md:col-span-12">
+                                <a href="#" class="text-[22px] focus:outline-none">
+                                    <img src="./img/logo-dek.png" class="w-12" alt="">
+                                </a>
+                                <p class="mt-6 text-gray-300">Start working with Tailwind CSS that can provide everything you need to generate awareness, drive traffic, connect.</p>
+                            </div><!--end col-->
+                    
+                            <div class="lg:col-span-4 md:col-span-4">
+                                <h5 class="tracking-[1px] text-gray-100 font-semibold">Company</h5>
+                                <ul class="mt-6 list-none footer-list">
+                                    <li><a href="#about" class="text-gray-300 duration-500 ease-in-out hover:text-gray-400"><i class="uil uil-angle-right-b me-1"></i> About us</a></li>
+                                    <li class="mt-[10px]"><a href="page-services.html" class="text-gray-300 duration-500 ease-in-out hover:text-gray-400"><i class="uil uil-angle-right-b me-1"></i> Services</a></li>
+                                    <li class="mt-[10px]"><a href="portfolio-creative-four.html" class="text-gray-300 duration-500 ease-in-out hover:text-gray-400"><i class="uil uil-angle-right-b me-1"></i> Project</a></li>
+                                    <li class="mt-[10px]"><a href="blog.html" class="text-gray-300 duration-500 ease-in-out hover:text-gray-400"><i class="uil uil-angle-right-b me-1"></i> Blog</a></li>
+                                    <li class="mt-[10px]"><a href="blog.html" class="text-gray-300 duration-500 ease-in-out hover:text-gray-400"><i class="uil uil-angle-right-b me-1"></i> Contact</a></li>
+                                    <li class="mt-[10px]"><a href="blog.html" class="text-gray-300 duration-500 ease-in-out hover:text-gray-400"><i class="uil uil-angle-right-b me-1"></i> Terms of Services</a></li>
+                                    <li class="mt-[10px]"><a href="page-privacy.html" class="text-gray-300 duration-500 ease-in-out hover:text-gray-400"><i class="uil uil-angle-right-b me-1"></i> Privacy Policy</a></li>
+                                </ul>
+                            </div><!--end col-->
+
+                            <div class="lg:col-span-4 md:col-span-4">
+                                <h5 class="tracking-[1px] text-gray-100 font-semibold">Newsletter</h5>
+                                <p class="mt-6">Sign up and receive the latest tips via email.</p>
+                                <form>
+                                    <div class="grid grid-cols-1">
+                                        <div class="my-3 foot-subscribe">
+                                            <label class="form-label">Write your email <span class="text-red-600">*</span></label>
+                                            <div class="relative mt-2 form-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute w-4 h-4 feather feather-mail top-3 left-4"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                                <input type="email" class="w-full py-2 pl-12 text-gray-100 bg-gray-800 border border-gray-800 focus:shadow-none" placeholder="Email" name="email" required="">
+                                            </div>
+                                        </div>
+                                    
+                                        <button type="submit" id="submitsubscribe" name="send" class="text-white bg-indigo-600 border-indigo-600 rounded-md btn hover:bg-indigo-700 hover:border-indigo-700">Subscribe</button>
+                                    </div>
+                                </form>
+                            </div><!--end col-->
+                        </div><!--end grid-->
+                    </div><!--end col-->
+                </div>
+            </div><!--end grid-->
+        </div><!--end container-->
+
+        <div class="py-[30px] px-0 border-t border-slate-800">
+            <div class="container text-center">
+                <div class="grid items-center md:grid-cols-2">
+                    <div class="text-center md:text-left">
+                        <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Deftzone. Design with 💗 by <a href="" target="_blank" class="text-reset">Roodey</a>.</p>
+                    </div>
+                </div><!--end grid-->
+            </div><!--end container-->
+        </div>
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script> -->
+    <script src="./js/tiny-slider/min/tiny-slider.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="./js/script.js"></script>
+</body>
+</html>
