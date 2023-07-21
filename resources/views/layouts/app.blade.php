@@ -38,7 +38,7 @@
 
     <!-- Initialize Quill editor -->
 <script>
-    var quill = new Quill('#body', {
+    var quill = new Quill('#quill-editor', {
         theme: 'snow',
         modules: {
             toolbar: [
@@ -52,32 +52,11 @@
         }
     });
 
-        // Ambil elemen-elemen yang diperlukan
-    const openModalButton = document.getElementById('openModalButton');
-    const closeModalButton = document.getElementById('closeModalButton');
-    const modalOverlay = document.getElementById('modalOverlay');
-
-    // Fungsi untuk menampilkan modal
-    function openModal() {
-    modalOverlay.style.display = 'flex';
-    }
-
-    // Fungsi untuk menyembunyikan modal
-    function closeModal() {
-    modalOverlay.style.display = 'none';
-    }
-
-    // Event listener untuk tombol "Tambah Kategori"
-    openModalButton.addEventListener('click', openModal);
-
-    // Event listener untuk tombol "Batal" dan klik di luar modal
-    closeModalButton.addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', function(event) {
-    if (event.target === modalOverlay) {
-        closeModal();
-    }
-    });
-
+    var form = document.querySelector('form');
+    form.onsubmit = function() {
+        var quillContent = quill.getContents();
+        document.querySelector('input[name="body"]').value = JSON.stringify(quillContent);
+    };
 </script>
 
 

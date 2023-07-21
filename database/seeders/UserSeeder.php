@@ -14,18 +14,18 @@ class UserSeeder extends Seeder
 {
     collect([
         [
-            'name' => 'Tom Cook',
-            'email' => 'me@company.com',
+            'name' => 'admin',
+            'email' => 'admin@admin1.com',
             'password' => bcrypt('password'),
         ],
         [
             'name' => 'John Doe',
-            'email' => 'john@doe.com',
+            'email' => 'admnin@admin2,com',
             'password' => bcrypt('password'),
         ],
         [
-            'name' => 'Jane Doe',
-            'email' => 'jane@doe.com',
+            'name' => 'Doe',
+            'email' => 'admin@admin3.com',
             'password' => bcrypt('password'),
         ],
     ])->each(fn ($user) => \App\Models\User::create($user));

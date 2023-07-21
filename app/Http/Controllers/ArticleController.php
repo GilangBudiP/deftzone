@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Category;
+use App\Http\Requests\StoreArticleRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {
@@ -22,15 +26,32 @@ class ArticleController extends Controller
     public function create()
     {
         //
-        return view('admin.article.create');
+        $categories = Category::all();
+        return view('admin.article.create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+
+    public function store(StoreArticleRequest $request)
     {
-        //
+        $quillContent = json_decode($request->input('body'), true);
+        
+        $thumbnailFileName = time() . '_thumbnail.' . $request->file('thumbnail')->getClientOriginalExtension();
+        $request->file('thumbnail')->storeAs('public/images', $thumbnailFileName);
+        
+        $article = Article::create([
+            'title' => $request->input('title'),
+            'thumbnail' => $thumbnailFileName,
+            'slug' => Str::slug($request->input('title')),
+            'author_id' => Auth::user()->id,
+            'body' => $quillContent,
+            'category_id' => $request->input('category_id'),
+            'status' => $request->input('status'),
+        ]);
+        
+        return redirect()->route('admin.article.index');
     }
 
     /**
@@ -64,4 +85,6 @@ class ArticleController extends Controller
     {
         //
     }
+
+
 }
