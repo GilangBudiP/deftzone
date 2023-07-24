@@ -15,7 +15,7 @@
 </head>
 <body class="relative font-inter">
     <!-- Navbar -->
-    <nav class="container fixed z-40 flex flex-row items-center justify-between my-6 md:my-10">
+    <nav class="container fixed z-40 flex flex-row items-center justify-between my-6 md:relative md:my-10">
         <div class="relative flex w-full" x-data="{ open: false }">
             <a href="#" class="z-50 block mr-24">
                 <img class="max-h-12" src="dist/img/logo.png" alt="logo">
