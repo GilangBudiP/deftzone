@@ -11,31 +11,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;800&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="dist/js/tiny-slider/tiny-slider.css">
     <link rel="stylesheet" href="dist/icons.css">
-    <link rel="stylesheet" href="dist/output.css">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-inter">
+<body class="relative font-inter">
     <!-- Navbar -->
-    <nav class="container flex flex-row items-center justify-between my-10">
-        <div class="flex">
-            <a href="#" class="block mr-24">
+    <nav class="container fixed z-40 flex flex-row items-center justify-between my-6 md:my-10">
+        <div class="relative flex w-full" x-data="{ open: false }">
+            <a href="#" class="z-50 block mr-24">
                 <img class="max-h-12" src="dist/img/logo.png" alt="logo">
             </a>
-            <ul class="items-center hidden gap-10 md:flex md:flex-row">
-                <li class="text-sm font-semibold uppercase"><a href="#">Home</a></li>
-                <li class="text-sm font-semibold uppercase"><a href="#">Services</a></li>
-                <li class="text-sm font-semibold uppercase"><a href="#">Portfolio</a></li>
-                <li class="text-sm font-semibold uppercase"><a href="#">Blog</a></li>
-            </ul>
+            <div class="z-50 block my-auto ml-auto w-7 md:hidden" @click="open = !open">
+                <span class="absolute block h-[3px] transition duration-500 ease-in-out transform rounded w-7 bg-sky-400" :class="{'rotate-45': open,' -translate-y-2': !open }"></span>
+                <span class="absolute block h-[3px] transition duration-500 ease-in-out transform rounded w-7 bg-sky-400" :class="{'opacity-0': open } "></span>
+                <span class="absolute block h-[3px] transition duration-500 ease-in-out transform rounded w-7 bg-sky-400" :class="{'-rotate-45': open, ' translate-y-2': !open}"></span>
+            </div>
+            <div class="fixed inset-0 flex items-center w-screen h-screen px-20 md:px-0 bg-white/95 md:relative md:w-auto md:h-auto md:!flex" x-show="open">
+                <ul class="flex-col items-center gap-10 md:flex md:flex-row">
+                    <li class="mb-4 text-base font-bold uppercase md:mb-0 md:font-semibold md:text-sm"><a href="#">Home</a></li>
+                    <li class="mb-4 text-base font-bold uppercase md:mb-0 md:font-semibold md:text-sm"><a href="#">Services</a></li>
+                    <li class="mb-4 text-base font-bold uppercase md:mb-0 md:font-semibold md:text-sm"><a href="#">Portfolio</a></li>
+                    <li class="mb-4 text-base font-bold uppercase md:mb-0 md:font-semibold md:text-sm"><a href="#">Blog</a></li>
+                </ul>
+            </div>
         </div>
         <div class="hidden md:flex nav-right">
-            <button class="px-5 py-3 transition-colors duration-300 border border-black rounded hover:bg-black hover:text-white hover:border-white">
+            <button class="px-5 py-3 transition-colors duration-300 border border-black rounded whitespace-nowrap hover:bg-black hover:text-white hover:border-white">
                 Get Started
             </button>
         </div>
     </nav>
     <!-- Header -->
-    <div class="container flex flex-col bg-right-bottom bg-no-repeat bg-none md:bg-header md:flex-row">
-        <div class="w-full my-20 md:w-1/2">
+    <div class="container flex flex-col h-screen bg-right-bottom bg-no-repeat md:h-min bg-none md:bg-header md:flex-row">
+        <div class="w-full my-auto md:my-20 md:w-1/2">
             <h2 class="text-4xl font-bold md:text-6xl">Work With The Best Marketers For Your Business</h2>
             <p class="text-lg font-medium">We digitally connect your brand with your target market in a desirable and refined manner.</p>
             <div class="flex gap-3 py-9">
@@ -49,24 +56,23 @@
                 </a>
             </div>
         </div>
-        <div class="w-full md:hidden">
-            <img src="./dist/img/bg-header.png" alt="">
-        </div>
     </div>
     <!-- Works -->
-    <div class="container flex flex-row justify-center gap-16 py-6">
-        <img class="transition-opacity duration-300 max-h-8 opacity-70 hover:opacity-100" src="./dist/img/works/ndoroarum.png" alt="">
-        <img class="transition-opacity duration-300 max-h-8 opacity-70 hover:opacity-100" src="./dist/img/works/lgh.png" alt="">
-        <img class="transition-opacity duration-300 max-h-8 opacity-70 hover:opacity-100" src="./dist/img/works/lch.png" alt="">
-        <img class="transition-opacity duration-300 max-h-8 opacity-70 hover:opacity-100" src="./dist/img/works/gh.png" alt="">
-        <img class="transition-opacity duration-300 max-h-8 opacity-70 hover:opacity-100" src="./dist/img/works/villa.png" alt="">
+    <div class="container py-6 overflow-x-scroll no-scrollbar">
+        <div class="flex flex-row justify-center gap-16 flex-nowrap">
+            <img class="transition-opacity duration-300 max-h-8 opacity-70 hover:opacity-100" src="./dist/img/works/ndoroarum.png" alt="">
+            <img class="transition-opacity duration-300 max-h-8 opacity-70 hover:opacity-100" src="./dist/img/works/lgh.png" alt="">
+            <img class="transition-opacity duration-300 max-h-8 opacity-70 hover:opacity-100" src="./dist/img/works/lch.png" alt="">
+            <img class="transition-opacity duration-300 max-h-8 opacity-70 hover:opacity-100" src="./dist/img/works/gh.png" alt="">
+            <img class="transition-opacity duration-300 max-h-8 opacity-70 hover:opacity-100" src="./dist/img/works/villa.png" alt="">
+        </div>
     </div>
     <!-- Talents -->
     <div class="container py-6">
-        <div class="flex w-full p-16 text-white bg-black rounded-3xl">
-            <div class="w-1/3 mr-8">
+        <div class="flex flex-col w-full p-6 text-white bg-black md:p-16 md:flex-row rounded-3xl">
+            <div class="w-full mr-8 md:w-1/3">
                 <h4 class="mb-5 text-4xl font-medium">All Talents</h4>
-                <p>Moltex is world-class markers & freelancers
+                <p>Deftzone is world-class markers & freelancers
                     based on proven results.</p>
             </div>
             <div class="flex gap-6 p-3">
@@ -98,11 +104,11 @@
         <p class="text-base font-semibold">Level-up your business with our professional services</p>
     </div>
     <div class="container">
-        <div class="flex justify-start gap-6 py-16">
-            <div class="w-7/12 px-20">
+        <div class="flex flex-col justify-start gap-6 py-16 md:flex-row">
+            <div class="w-full md:px-20 md:w-7/12">
                 <img src="./dist/img/services/digital-marketing.svg" alt="">
             </div>
-            <div class="w-4/12">
+            <div class="w-full md:w-4/12">
                 <span class="inline-block mb-1 text-sm font-bold text-blue-500 uppercase">DIGITAL MARKETING</span>
                 <h3 class="mb-6 text-4xl font-bold">Elevate Your Brand with High-Quality Digital Marketers</h3>
                 <p class="mb-6 text-xl font-semibold text-black/70">Thanks to our profound knowledge in digital marketing, we are here to help your Brand achieve undeniable visibility in the digital era.</p>
@@ -112,25 +118,25 @@
     </div>
     <div class="bg-gradient-to-br from-[#E9FAF7] via-white to-[#E8F2FC]">
         <div class="container">
-            <div class="flex justify-center gap-6 py-16">
-                <div class="w-4/12">
+            <div class="flex flex-col justify-center gap-6 py-16 md:flex-row">
+                <div class="order-2 w-full md:order-1 md:w-4/12">
                     <span class="inline-block mb-1 text-sm font-bold text-blue-500 uppercase">WEB & APP DEVELOPMENT</span>
                     <h3 class="mb-6 text-4xl font-bold">Crafting Websites to Empower Your Online Bussiness</h3>
                     <p class="mb-6 text-xl font-semibold text-black/70">Our expert web development services can empower your online presence. </p>
                     <p class="mb-6 text-xl font-semibold text-black/70">We create customized and responsive websites that combine aesthetics with functionality, driving engagement and helping you succeed in the digital realm.</p>
                 </div>
-                <div class="w-7/12 px-20">
+                <div class="order-1 w-full md:order-2 md:px-20 md:w-7/12">
                     <img src="./dist/img/services/web-dev.svg" alt="">
                 </div>
             </div>
         </div>
     </div>
     <div class="container">
-        <div class="flex justify-start gap-6 py-16">
-            <div class="w-7/12 px-20">
+        <div class="flex flex-col justify-start gap-6 py-16 md:flex-row">
+            <div class="w-full md:px-20 md:w-7/12">
                 <img src="./dist/img/services/graphic-design.svg" alt="">
             </div>
-            <div class="w-4/12">
+            <div class="w-full md:w-4/12">
                 <span class="inline-block mb-1 text-sm font-bold text-blue-500 uppercase">GRAPHIC DESIGN</span>
                 <h3 class="mb-6 text-4xl font-bold">Unlock Your Brand's Potential with Our Pro-Designer</h3>
                 <p class="mb-6 text-xl font-semibold text-black/70">Our expert graphic design services bring your brand to life.</p>
@@ -140,14 +146,14 @@
     </div>
     <div class="bg-gradient-to-br from-[#E9FAF7] via-white to-[#E8F2FC]">
         <div class="container">
-            <div class="flex justify-center gap-6 py-16">
-                <div class="w-4/12">
+            <div class="flex flex-col justify-center gap-6 py-16 md:flex-row">
+                <div class="order-2 w-full md:order-1 md:w-4/12">
                     <span class="inline-block mb-1 text-sm font-bold text-blue-500 uppercase">PHOTO & VIDEO</span>
                     <h3 class="mb-6 text-4xl font-bold">Enhance Your Visual Content with Our Pro- Photographer</h3>
                     <p class="mb-6 text-xl font-semibold text-black/70">Capture attention and leave a lasting impression with our top-notch photo and video services.</p>
                     <p class="mb-6 text-xl font-semibold text-black/70">Our skilled team will transform your visuals, ensuring that your photos and video ads stand out from the crowd.</p>
                 </div>
-                <div class="w-7/12 px-20">
+                <div class="order-1 w-full md:order-2 md:px-20 md:w-7/12">
                     <img src="./dist/img/services/photo-video.svg" alt="">
                 </div>
             </div>
@@ -155,7 +161,7 @@
     </div>
     <!-- CTA -->
     <div class="container py-16">
-        <div class="p-16 relative rounded-3xl text-center bg-gradient-to-br from-[#79E5B5] to-[#94E1A6] text-white">
+        <div class="p-6 md:p-16 relative rounded-3xl text-center bg-gradient-to-br from-[#79E5B5] to-[#94E1A6] text-white">
             <h3 class="mb-6 text-4xl font-bold">Grow your Bussiness with Deftzone</h3>
             <p class="mb-6 text-base font-semibold">No payment required until you get your solution</p>
             <div class="flex justify-center gap-3">
@@ -168,10 +174,10 @@
                     <span class="relative font-medium">Let's Talk</span>
                 </a>
             </div>
-            <div class="absolute right-20 top-14">
+            <div class="absolute hidden md:block right-20 top-14">
                 <img src="./dist/img/wave-icon.svg" alt="">
             </div>
-            <div class="absolute left-20 bottom-14">
+            <div class="absolute hidden md:block left-20 bottom-14">
                 <img class="stroke-white" src="./dist/img/wave-icon-2.svg" alt="">
             </div>
         </div>
@@ -182,8 +188,8 @@
             <div class="mx-auto w-0.5 h-32 bg-emerald-300"></div>
         </div>
         <div class="w-10/12 mx-auto">
-            <div class="flex items-center justify-center gap-16">
-                <div class="flex gap-2.5 social-media">
+            <div class="flex flex-col items-center justify-center gap-6 md:gap-16 md:flex-row">
+                <div class="order-2 md:order-1 flex opacity-60 gap-2.5 social-media">
                     <span class="instagram">
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10.4 2.6665H21.6C25.8667 2.6665 29.3333 6.13317 29.3333 10.3998V21.5998C29.3333 23.6508 28.5186 25.6178 27.0683 27.0681C25.618 28.5184 23.651 29.3332 21.6 29.3332H10.4C6.13334 29.3332 2.66667 25.8665 2.66667 21.5998V10.3998C2.66667 8.34883 3.48143 6.38183 4.93171 4.93154C6.38199 3.48126 8.349 2.6665 10.4 2.6665ZM10.1333 5.33317C8.8603 5.33317 7.6394 5.83888 6.73923 6.73906C5.83905 7.63923 5.33334 8.86013 5.33334 10.1332V21.8665C5.33334 24.5198 7.48 26.6665 10.1333 26.6665H21.8667C23.1397 26.6665 24.3606 26.1608 25.2608 25.2606C26.161 24.3604 26.6667 23.1395 26.6667 21.8665V10.1332C26.6667 7.47984 24.52 5.33317 21.8667 5.33317H10.1333ZM23 7.33317C23.442 7.33317 23.866 7.50877 24.1785 7.82133C24.4911 8.13389 24.6667 8.55781 24.6667 8.99984C24.6667 9.44186 24.4911 9.86579 24.1785 10.1783C23.866 10.4909 23.442 10.6665 23 10.6665C22.558 10.6665 22.1341 10.4909 21.8215 10.1783C21.5089 9.86579 21.3333 9.44186 21.3333 8.99984C21.3333 8.55781 21.5089 8.13389 21.8215 7.82133C22.1341 7.50877 22.558 7.33317 23 7.33317ZM16 9.33317C17.7681 9.33317 19.4638 10.0355 20.714 11.2858C21.9643 12.536 22.6667 14.2317 22.6667 15.9998C22.6667 17.7679 21.9643 19.4636 20.714 20.7139C19.4638 21.9641 17.7681 22.6665 16 22.6665C14.2319 22.6665 12.5362 21.9641 11.286 20.7139C10.0357 19.4636 9.33334 17.7679 9.33334 15.9998C9.33334 14.2317 10.0357 12.536 11.286 11.2858C12.5362 10.0355 14.2319 9.33317 16 9.33317ZM16 11.9998C14.9391 11.9998 13.9217 12.4213 13.1716 13.1714C12.4214 13.9216 12 14.939 12 15.9998C12 17.0607 12.4214 18.0781 13.1716 18.8283C13.9217 19.5784 14.9391 19.9998 16 19.9998C17.0609 19.9998 18.0783 19.5784 18.8284 18.8283C19.5786 18.0781 20 17.0607 20 15.9998C20 14.939 19.5786 13.9216 18.8284 13.1714C18.0783 12.4213 17.0609 11.9998 16 11.9998Z" fill="black"/>
@@ -210,19 +216,19 @@
                         </svg>
                     </span>
                 </div>
-                <div class="flex flex-col py-6 text-center address">
+                <div class="flex flex-col order-1 pt-6 text-center md:py-6 md:order-2 address">
                     <div class="mb-10">
-                        <img src="./dist/img/logo.png" class="mx-auto max-h-12 grayscale" alt="logo deftzone">
+                        <img src="./dist/img/logo.png" class="mx-auto max-h-8 md:max-h-12 grayscale" alt="logo deftzone">
                     </div>
-                    <p class="text-sm font-medium text-black/70">
+                    <p class="w-5/6 mx-auto text-sm font-medium md:w-full text-black/70">
                         Jalan Pogung Kidul, Sinduadi, Mlati, Kab. Sleman, Daerah Istimewa Yogyakarta
                     </p>
                 </div>
-                <div class="font-medium text-center contact text-black/70">
-                    <div class="mb-2.5 text-lg">
+                <div class="order-3 font-semibold text-center contact text-black/70">
+                    <div class="mb-2.5 text-sm md:text-lg">
                         contact@deftzone.id
                     </div>
-                    <div class="flex gap-2">
+                    <div class="flex gap-1 text-sm md:gap-2 md:text-base">
                         <span>
                             <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5.465 8.5925C6.545 10.715 8.285 12.455 10.4075 13.535L12.0575 11.885C12.2675 11.675 12.56 11.615 12.8225 11.6975C13.6625 11.975 14.5625 12.125 15.5 12.125C15.6989 12.125 15.8897 12.204 16.0303 12.3447C16.171 12.4853 16.25 12.6761 16.25 12.875V15.5C16.25 15.6989 16.171 15.8897 16.0303 16.0303C15.8897 16.171 15.6989 16.25 15.5 16.25C12.1185 16.25 8.87548 14.9067 6.48439 12.5156C4.0933 10.1245 2.75 6.88151 2.75 3.5C2.75 3.30109 2.82902 3.11032 2.96967 2.96967C3.11032 2.82902 3.30109 2.75 3.5 2.75H6.125C6.32391 2.75 6.51468 2.82902 6.65533 2.96967C6.79598 3.11032 6.875 3.30109 6.875 3.5C6.875 4.4375 7.025 5.3375 7.3025 6.1775C7.385 6.44 7.325 6.7325 7.115 6.9425L5.465 8.5925Z" fill="black" fill-opacity="0.6"/>
@@ -235,7 +241,7 @@
         </div>
         <hr class="w-32 mx-auto h-0.5 bg-emerald-300 my-6">
         <div class="text-center">
-            <span class="font-medium text-black/70">
+            <span class="text-sm font-medium md:text-base text-black/70">
                 CV Deft Zone Indonesia © 2023. All rights reserved.
             </span>
         </div>
@@ -246,6 +252,6 @@
     <script>
         AOS.init();
     </script>
-    <script src="dist/js/script.js"></script>
+    {{-- <script src="dist/js/script.js"></script> --}}
 </body>
 </html>
