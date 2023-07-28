@@ -19,6 +19,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/blog', function() {
+    return view('blog');
+});
+Route::get('/blog/{slug}', function() {
+    return view('blog-detail');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
