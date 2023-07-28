@@ -1,5 +1,6 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
+import prose from '@tailwindcss/typography';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -15,14 +16,11 @@ export default {
           'inter': ['Inter', 'sans-serif'],
           'sans': ['Figtree', ...defaultTheme.fontFamily.sans],
         },
-        lineHeight: {
-          'extra-loose': '1.4'
-        },
         container: {
           center: true,
           padding: {
-            DEFAULT: '16px',
-            sm: '1rem',
+            DEFAULT: '1rem',
+            sm: '2rem',
             lg: '45px',
             xl: '5rem'
           },
@@ -36,9 +34,15 @@ export default {
           },
           backgroundImage: {
             'header': "url('/dist/img/bg-header.png')",
-          }
+          },
+          lineHeight: {
+            'extra-loose': '1.4'
+          },
         },
       },
 
-    plugins: [forms],
+    plugins: [
+        forms,
+        prose,
+    ],
 };
