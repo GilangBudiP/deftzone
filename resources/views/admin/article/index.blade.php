@@ -29,10 +29,11 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($articles as $item)
                             <tr class="border-b dark:border-neutral-500">
-                                <td class="whitespace-nowrap px-6 py-4">The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                                <td class="whitespace-nowrap px-6 py-4">Malcolm Lockyer</td>
-                                <td class="whitespace-nowrap px-6 py-4">1961</td>
+                                <td class="whitespace-nowrap px-6 py-4">{{ $item->title  }}</td>
+                                <td class="whitespace-nowrap px-6 py-4">{{ $item->author->name }}</td>
+                                <td class="whitespace-nowrap px-6 py-4">{{ $item->category->name }}</td>
                                 <td class="whitespace-nowrap px-6 py-4">
                                     <button type="button" id="deleteProductButton" data-drawer-target="drawer-delete-product-default" data-drawer-show="drawer-delete-product-default" aria-controls="drawer-delete-product-default" data-drawer-placement="right" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
                                         Delete item
@@ -42,12 +43,8 @@
                                     </button>
                                 </td>
                             </tr>
-                            <tr class="border-b dark:border-neutral-500">
-                                <td class="whitespace-nowrap px-6 py-4">The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                                <td class="whitespace-nowrap px-6 py-4">Malcolm Lockyer</td>
-                                <td class="whitespace-nowrap px-6 py-4">1961</td>
-                                <td class="whitespace-nowrap px-6 py-4">asas</td>
-                            </tr>
+                            @endforeach
+
                         </tbody>
                     </table>
             </div>

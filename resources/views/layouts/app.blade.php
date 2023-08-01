@@ -12,8 +12,9 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @stack('styles')
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -34,30 +35,11 @@
             </main>
         </div>
     </body>
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+    @stack('scripts')
 
     <!-- Initialize Quill editor -->
-<script>
-    var quill = new Quill('#quill-editor', {
-        theme: 'snow',
-        modules: {
-            toolbar: [
-                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-                ['bold', 'italic', 'underline', 'strike'],
-                ['link', 'image', 'video'],
-                [{ 'align': [] }],
-                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-                ['clean']
-            ]
-        }
-    });
 
-    var form = document.querySelector('form');
-    form.onsubmit = function() {
-        var quillContent = quill.getContents();
-        document.querySelector('input[name="body"]').value = JSON.stringify(quillContent);
-    };
-</script>
 
 
 

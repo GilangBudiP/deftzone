@@ -17,7 +17,8 @@ class ArticleController extends Controller
     public function index()
     {
         //
-        return view('admin.article.index');
+        $articles = Article::all();
+        return view('admin.article.index', compact('articles'));
     }
 
     /**
@@ -36,22 +37,24 @@ class ArticleController extends Controller
 
     public function store(StoreArticleRequest $request)
     {
-        $quillContent = json_decode($request->input('body'), true);
-        
+
+        // dd($request->all());
+        // $quillContent = json_decode($request->input('body'), true);
+
         $thumbnailFileName = time() . '_thumbnail.' . $request->file('thumbnail')->getClientOriginalExtension();
         $request->file('thumbnail')->storeAs('public/images', $thumbnailFileName);
-        
-        $article = Article::create([
+
+        Article::create([
             'title' => $request->input('title'),
             'thumbnail' => $thumbnailFileName,
             'slug' => Str::slug($request->input('title')),
             'author_id' => Auth::user()->id,
-            'body' => $quillContent,
+            'body' => $request->input('body'),
             'category_id' => $request->input('category_id'),
             'status' => $request->input('status'),
         ]);
-        
-        return redirect()->route('admin.article.index');
+
+        return redirect()->route('articles.index');
     }
 
     /**
