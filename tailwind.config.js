@@ -44,5 +44,15 @@ export default {
     plugins: [
         forms,
         prose,
+        require('tailwind-typewriter')({
+            wordsets: {
+                service: {
+                    words: ['Marketers', 'Developers', 'Designers'],
+                    delay: 2,
+                    writeSpeed: 0.2,
+                    caretWidth	: '2px'
+                }
+            }
+        })
     ],
 };

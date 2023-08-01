@@ -57,7 +57,7 @@
                                 Tambah Kategori
                                 </button> --}}
                             </label>
-                            
+
                             <div class="mt-2">
                             <select id="category_id" name="category_id" autocomplete="on" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 @foreach ($categories as $category)
@@ -86,7 +86,33 @@
             </div>
         </div>
     </div>
+    @push('styles')
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    @endpush
 
-    
+    @push('scripts')
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+        var quill = new Quill('#quill-editor', {
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                    ['bold', 'italic', 'underline', 'strike'],
+                    ['link', 'image', 'video'],
+                    [{ 'align': [] }],
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                    ['clean']
+                ]
+            }
+        });
+
+    quill.on('text-change', function(delta, oldDelta, source) {
+    document.querySelector("input[name='body']").value = quill.root.innerHTML;
+console.log('changed')
+    });
+    </script>
+    @endpush
+
 
 </x-app-layout>

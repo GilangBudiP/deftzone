@@ -27,10 +27,10 @@
             </div>
             <div class="fixed inset-0 flex items-center w-screen h-screen px-20 lg:px-0 bg-white/95 lg:relative lg:w-auto lg:h-auto lg:!flex" x-show="open">
                 <ul class="flex-col items-center gap-10 lg:flex lg:flex-row">
-                    <li class="mb-4 text-base font-bold uppercase lg:mb-0 lg:font-semibold lg:text-sm"><a href="#">Home</a></li>
-                    <li class="mb-4 text-base font-bold uppercase lg:mb-0 lg:font-semibold lg:text-sm"><a href="#">Services</a></li>
-                    <li class="mb-4 text-base font-bold uppercase lg:mb-0 lg:font-semibold lg:text-sm"><a href="#">Portfolio</a></li>
-                    <li class="mb-4 text-base font-bold uppercase lg:mb-0 lg:font-semibold lg:text-sm"><a href="#">Blog</a></li>
+                    <li class="mb-4 text-base font-bold uppercase lg:mb-0 lg:font-semibold lg:text-sm opacity-60 hover:opacity-100 transition-all duration-500"><a href="#">Home</a></li>
+                    <li class="mb-4 text-base font-bold uppercase lg:mb-0 lg:font-semibold lg:text-sm opacity-60 hover:opacity-100 transition-all duration-500"><a href="#">Services</a></li>
+                    <li class="mb-4 text-base font-bold uppercase lg:mb-0 lg:font-semibold lg:text-sm opacity-60 hover:opacity-100 transition-all duration-500"><a href="#">Portfolio</a></li>
+                    <li class="mb-4 text-base font-bold uppercase lg:mb-0 lg:font-semibold lg:text-sm opacity-100"><a href="#">Blog</a></li>
                 </ul>
             </div>
         </div>
@@ -41,25 +41,28 @@
         </div>
     </nav>
     <!-- Section Title -->
-    <div class="container py-6 lg:py-20 mt-20 lg:mt-0 grid grid-cols-1 lg:grid-cols-2 gap-10">
+    <div class="container py-6 lg:py-20 mt-20 lg:mt-0 grid grid-cols-1 lg:grid-cols-2 gap-10 items-end">
         <div class="">
             <h1 class="text-3xl font-bold mb-4">Tailwind CSS: Meningkatnya Popularitas di Kalangan Developer Saat Ini</h1>
             <p class="text-lg font-medium mb-4">Pelajari mengapa developer semakin memilih framework CSS ini. Dengan pendekatan Utility-First, ringan, dan cepat, serta fleksibilitas untuk desain kustom, Tailwind CSS menjadi pilihan favorit bagi para pengembang web. </p>
             <span class="inline-block text-base font-medium mb-4">Diterbitkan 21 Juli oleh Rudi</span>
             <div class="flex justify-between items-center">
-                <span class="py-1 px-4 bg-sky-400 rounded-full text-white font-medium text-xs">TailwindCSS</span>
-                <span class="py-1 px-4 bg-black rounded-full text-white font-medium text-xs">Bagikan</span>
+                <span class="py-1.5 px-3 bg-sky-400 rounded-full text-white font-medium text-xs">TailwindCSS</span>
+                <button class="py-1.5 px-3 bg-black rounded-full text-white font-medium text-xs flex flex-row items-center gap-2">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" class="shrink-0 align-middle mr-1 h-2.5 w-2.5"><path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"></path></svg>
+                    </span> Bagikan</button>
             </div>
         </div>
         <div class="mt-5 -mx-8 lg:mx-0">
             <div class="">
-                <img src="{{ asset('dist/img/blog/thumb-example.png') }}" alt="" class="w-full rounded-none lg:rounded">
+                <img src="{{ asset('dist/img/blog/thumb-example.png') }}" alt="" class="w-full rounded-none lg:rounded aspect-video">
             </div>
         </div>
     </div>
-    <div class="container grid grid-cols-3 gap-10">
+    <div class="container grid grid-cols-3 gap-10 py-6 border-t border-b border-gray-200">
         <div class="flex flex-col order-2 lg:order-1 col-span-3 lg:col-span-2 gap-6">
-            <div class="blog-content px-2 lg:px-0">
+            <div class="blog-content px-2 lg:px-6">
                 <p>
                     Tailwind CSS, sebuah framework CSS yang relatif baru, semakin mendapatkan popularitas yang pesat di kalangan pengembang web saat ini. Dalam beberapa tahun terakhir, banyak pengembang yang beralih dari framework CSS tradisional ke Tailwind CSS karena fitur-fitur dan pendekatan yang inovatif yang ditawarkannya. Dalam artikel ini, kita akan menjelajahi mengapa Tailwind CSS semakin banyak digunakan oleh developer dan mengapa ini menjadi tren yang semakin populer.
                 </p>
@@ -98,7 +101,7 @@
                 </h3>
                 <p>
                     Dengan fitur-fitur inovatifnya, pendekatan utility-first yang efisien, dan fleksibilitas yang tinggi, Tailwind CSS semakin menjadi pilihan utama bagi developer dalam membangun antarmuka web modern. Kemampuannya untuk menghadirkan desain kustom dengan ukuran file CSS yang ringan dan performa yang cepat membuatnya menjadi pilihan yang menarik bagi mereka yang mencari alternatif framework CSS yang kuat dan mudah digunakan.
-                    Jika Anda adalah seorang pengembang web, mencoba Tailwind CSS dapat membantu Anda meningkatkan produktivitas dan menciptakan antarmuka yang menarik dengan mudah. Tidak diragukan lagi, Tailwind CSS merupakan salah satu framework CSS yang patut dipertimbangkan dalam toolkit pengembangan web Anda.  This article was generated by AI
+                    Jika Anda adalah seorang pengembang web, mencoba Tailwind CSS dapat membantu Anda meningkatkan produktivitas dan menciptakan antarmuka yang menarik dengan mudah. Tidak diragukan lagi, Tailwind CSS merupakan salah satu framework CSS yang patut dipertimbangkan dalam toolkit pengembangan web Anda.This article was generated by AI
                 </p>
             </div>
         </div>
@@ -188,7 +191,7 @@
                 </div>
                 <div class="flex flex-col order-1 pt-6 text-center lg:py-6 lg:order-2 address">
                     <div class="mb-10">
-                        <img src="./dist/img/logo.png" class="mx-auto max-h-8 lg:max-h-12 grayscale" alt="logo deftzone">
+                        <img src="{{ asset('/dist/img/logo.png') }}" class="mx-auto max-h-8 lg:max-h-12 grayscale" alt="logo deftzone">
                     </div>
                     <p class="w-5/6 mx-auto text-sm font-medium lg:w-full text-black/70">
                         Jalan Pogung Kidul, Sinduadi, Mlati, Kab. Sleman, Daerah Istimewa Yogyakarta

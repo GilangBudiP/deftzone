@@ -42,6 +42,10 @@
     @apply link-underline link-underline-black group-hover:bg-[length:100%_3px];
 }
 
+.nav-link {
+    @apply link-underline link-underline-black;
+}
+
 .blog-content {
     @apply prose lg:prose-xl;
 }
