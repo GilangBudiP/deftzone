@@ -12,9 +12,10 @@
                     <div>
                         <h1 class="text-xl font-bold">Tulis Artikel</h1>
                     </div>
-                    <form class="" action="{{ route('articles.store') }}" method="post"
+                    <form class="" action="{{ route('articles.update', $article->id) }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         @if ($errors->any())
                             <div>
                                 @foreach ($errors->all() as $error)
@@ -28,7 +29,8 @@
                                     class="block text-sm font-medium leading-6 text-gray-900">Title</label>
                                 <div class="mt-2">
                                     <input type="text" name="title" id="title" autocomplete="on" required
-                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                        value="{{ $article->title }}">
                                 </div>
                             </div>
 
@@ -37,41 +39,50 @@
                                     class="block text-sm font-medium leading-6 text-gray-900">Slug</label>
                                 <div class="mt-2">
                                     <input type="text" name="slug" id="slug" autocomplete=""
-                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                        value="{{ $article->slug }}">
                                 </div>
                             </div>
                             <div class="col-span-full">
                                 <label for="thumbnail" class="block text-sm font-medium leading-6 text-gray-900">Cover
                                     photo</label>
                                 <div class="mt-2">
-                                    <input type="file" name="thumbnail" id="thumbnail" autocomplete="on" required
+                                    <!-- Hidden input to store the previous thumbnail filename -->
+                                    <input type="hidden" name="previous_thumbnail" value="{{ $article->thumbnail }}">
+
+                                    <!-- Display the filename if a thumbnail exists -->
+                                    @if ($article->thumbnail)
+                                        <span class="mr-2">{{ $article->thumbnail }}</span>
+                                    @endif
+
+                                    <!-- Input field to allow selecting a new thumbnail -->
+                                    <input type="file" name="thumbnail" id="thumbnail" autocomplete="on"
                                         accept="image/*"
-                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                        value="{{ $article->thumbnail }}">
+
                                 </div>
                             </div>
                             <div class="col-span-full">
                                 <label for="body"
                                     class="block text-sm font-medium leading-6 text-gray-900">Body</label>
                                 <div class="mt-2">
-                                    <input type="hidden" name="body" value="{{ old('body') }}">
-                                    <div id="quill-editor">
-                                    </div>
+                                    <input type="hidden" name="body" value="{{ $article->body }}">
+                                    <div id="quill-editor">{!! $article->body !!}</div>
                                     {{-- <textarea name="body" id="body" cols="30" rows="10"></textarea> --}}
                                 </div>
                             </div>
                             <div class="sm:col-span-3">
                                 <label for="category" class="block text-sm font-medium leading-6 text-gray-900">
                                     Kategori
-                                    {{-- <button id="openModalButton" class="bg-green-500 hover:bg-green-700 text-white font-light py-1 px-2 rounded ml-2 button">
-                                Tambah Kategori
-                                </button> --}}
                                 </label>
 
                                 <div class="mt-2">
                                     <select id="category_id" name="category_id" autocomplete="on" required
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @foreach ($category as $cat)
+                                            <option {{ $cat->id == $article->category_id ? 'selected' : '' }}
+                                                value="{{ $cat->id }}">{{ $cat->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -83,8 +94,9 @@
                                     <select id="status" name="status" autocomplete="on" required
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         <option value="">Select Status</option>
-                                        <option value="1" {{ old('status') ? 'selected' : '' }}>Published</option>
-                                        <option value="0" {{ old('status') === false ? 'selected' : '' }}>Draft
+                                        <option value="1" {{ $article->status === 1 ? 'selected' : '' }}>Published
+                                        </option>
+                                        <option value="0" {{ $article->status === 0 ? 'selected' : '' }}>Draft
                                         </option>
                                     </select>
                                 </div>

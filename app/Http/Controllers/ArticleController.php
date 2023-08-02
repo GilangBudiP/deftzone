@@ -8,6 +8,8 @@ use App\Http\Requests\StoreArticleRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -38,8 +40,6 @@ class ArticleController extends Controller
     public function store(StoreArticleRequest $request)
     {
 
-        // dd($request->all());
-        // $quillContent = json_decode($request->input('body'), true);
 
         $thumbnailFileName = time() . '_thumbnail.' . $request->file('thumbnail')->getClientOriginalExtension();
         $request->file('thumbnail')->storeAs('public/images', $thumbnailFileName);
@@ -54,7 +54,7 @@ class ArticleController extends Controller
             'status' => $request->input('status'),
         ]);
 
-        return redirect()->route('articles.index');
+        return redirect()->route('articles.index')->with('success', 'Article has been saved successfully!');
     }
 
     /**
@@ -71,14 +71,47 @@ class ArticleController extends Controller
     public function edit(Article $article)
     {
         //
+        $category = Category::all();
+        return view('admin.article.edit', compact('article', 'category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Article $article)
+    public function update(Request $request, string $id)
     {
         //
+        $article = Article::findOrFail($id);
+        $request->validate([
+            'title' => 'required|max:255',
+            'slug' =>  [
+                'required',
+                Rule::unique('articles')->ignore($id),
+            ],
+            'thumbnail' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // example validation for image upload
+            'body' => 'required',
+            'category_id' => 'required',
+            'status' => 'required',
+        ]);
+
+        if ($request->hasFile('thumbnail')) {
+            if ($article->thumbnail) {
+                Storage::delete('public/images/' . $article->thumbnail);
+            }
+            $thumbnailFileName = time() . '_thumbnail.' . $request->file('thumbnail')->getClientOriginalExtension();
+            $request->file('thumbnail')->storeAs('public/images', $thumbnailFileName);
+            $article->thumbnail = $thumbnailFileName;
+        }
+
+        $article->title = $request->input('title');
+        $article->slug = Str::slug($request->input('title'));
+        $article->body = $request->input('body');
+        $article->category_id = $request->input('category_id');
+        $article->status = $request->input('status');
+
+        $article->save();
+
+        return redirect()->route('articles.index')->with('success', 'Article updated successfully!');
     }
 
     /**
@@ -87,7 +120,8 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         //
+        Storage::delete('public/images/' . $article->foto);
+        $article->delete();
+        return redirect()->route('articles.index')->with('success', 'Article has been Removed successfully!');
     }
-
-
 }
