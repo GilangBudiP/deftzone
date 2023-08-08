@@ -40,9 +40,9 @@
                 x-show="open">
                 <ul class="flex-col items-center gap-10 md:flex md:flex-row">
                     <li class="mb-4 text-base font-bold uppercase md:mb-0 md:font-semibold md:text-sm"><a
-                            href="#">Home</a></li>
+                            href="{{ route('welcome') }}">Home</a></li>
                     <li class="mb-4 text-base font-bold uppercase md:mb-0 md:font-semibold md:text-sm"><a
-                            href="#">Services</a></li>
+                            href="{{ route('welcome') }}#services">Services</a></li>
                     <li class="mb-4 text-base font-bold uppercase md:mb-0 md:font-semibold md:text-sm"><a
                             href="#">Portfolio</a></li>
                     <li class="mb-4 text-base font-bold uppercase md:mb-0 md:font-semibold md:text-sm"><a

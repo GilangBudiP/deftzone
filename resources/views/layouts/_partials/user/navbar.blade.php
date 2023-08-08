@@ -17,15 +17,19 @@
             <ul class="flex-col items-center gap-10 lg:flex lg:flex-row">
                 <li
                     class="mb-4 text-base font-bold uppercase lg:mb-0 lg:font-semibold lg:text-sm opacity-60 hover:opacity-100 transition-all duration-500 nav-link">
-                    <a href="#">Home</a></li>
+                    <a href="{{ route('welcome') }}">Home</a>
+                </li>
                 <li
                     class="mb-4 text-base font-bold uppercase lg:mb-0 lg:font-semibold lg:text-sm opacity-60 hover:opacity-100 transition-all duration-500 nav-link">
-                    <a href="#">Services</a></li>
+                    <a href="{{ route('welcome') }}#services">Services</a>
+                </li>
                 <li
                     class="mb-4 text-base font-bold uppercase lg:mb-0 lg:font-semibold lg:text-sm opacity-60 hover:opacity-100 transition-all duration-500 nav-link">
-                    <a href="#">Portfolio</a></li>
+                    <a href="#">Portfolio</a>
+                </li>
                 <li class="mb-4 text-base font-bold uppercase lg:mb-0 lg:font-semibold lg:text-sm opacity-100 nav-link">
-                    <a href="{{ route('blog.index') }}">Blog</a></li>
+                    <a href="{{ route('blog.index') }}">Blog</a>
+                </li>
             </ul>
         </div>
     </div>
