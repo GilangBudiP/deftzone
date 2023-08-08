@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,12 +20,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/blog', function() {
-    return view('blog');
-});
-Route::get('/blog/{slug}', function() {
-    return view('blog-detail');
-});
+
+Route::resource('/blog', BlogController::class)->only(['index', 'show']);
+// Route::get('/blog', function() {
+//     return view('blog');
+// });
+// Route::get('/blog/{slug}', function() {
+//     return view('blog-detail');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -37,7 +40,6 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/articles', ArticleController::class);
     Route::post('/upload-image', [ImageController::class, 'upload'])->name('upload.image');
-
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
