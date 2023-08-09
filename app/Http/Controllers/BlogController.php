@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
@@ -15,7 +16,7 @@ class BlogController extends Controller
     {
         //
         $latestPost = Article::latest()->first();
-        $articles = Article::all();
+        $articles = Article::latest()->paginate(5);
         $categories = Category::all();
         return view('blog', compact('articles', 'categories', 'latestPost'));
     }
@@ -42,9 +43,21 @@ class BlogController extends Controller
     public function show($slug)
     {
         //
-        $article = Article::where('slug', $slug)->first();
+        $article = Article::where('slug', $slug)->firstOrFail();
+
+         // Extract headings based on custom tags
+        preg_match_all('/<h([1-6])>(.*?)<\/h[1-6]>/i', $article->body, $headings);
+
+    // Generate the table of contents
+        $tableOfContents = '';
+        foreach ($headings[2] as $index => $heading) {
+            $level = $headings[1][$index];
+            $anchor = Str::slug($heading);
+            $tableOfContents .= "<li><a href='#$anchor'>$heading</a></li>";
+            $article->body = str_replace($headings[0][$index], "<h$level id='$anchor'>$heading</h$level>", $article->body);
+        }
         $category = Category::all();
-        return view('blog-detail', compact('article', 'category'));
+        return view('blog-detail', compact('article', 'category', 'tableOfContents'));
     }
 
     /**

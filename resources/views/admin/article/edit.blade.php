@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
             {{ __('Article') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div>
                         <h1 class="text-xl font-bold">Tulis Artikel</h1>
@@ -23,7 +23,7 @@
                                 @endforeach
                             </div>
                         @endif
-                        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                        <div class="grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6">
                             <div class="sm:col-span-3">
                                 <label for="Title"
                                     class="block text-sm font-medium leading-6 text-gray-900">Title</label>
@@ -103,9 +103,9 @@
                             </div>
                         </div>
 
-                        <div class="mt-6 flex items-center justify-end gap-x-6">
+                        <div class="flex items-center justify-end mt-6 gap-x-6">
                             <button type="submit"
-                                class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+                                class="px-3 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
                         </div>
                     </form>
                 </div>
@@ -143,8 +143,25 @@
 
             quill.on('text-change', function(delta, oldDelta, source) {
                 document.querySelector("input[name='body']").value = quill.root.innerHTML;
+                updateTableOfContents();
                 console.log('changed')
             });
+
+            function updateTableOfContents() {
+                // Get the current headings in the editor
+                const headings = document.querySelectorAll('#quill-editor h1, #quill-editor h2, #quill-editor h3, #quill-editor h4, #quill-editor h5, #quill-editor h6');
+                const tableOfContents = document.querySelector('#table-of-contents ul');
+
+                tableOfContents.innerHTML = ''; // Clear existing table of contents
+
+                // Generate the table of contents
+                headings.forEach((heading, index) => {
+                    const level = parseInt(heading.tagName.charAt(1));
+                    const anchor = heading.innerText.trim().replace(/\s+/g, '-');
+                    tableOfContents.innerHTML += `<li><a href="#${anchor}">${heading.innerText}</a></li>`;
+                    heading.id = anchor;
+                });
+            }
         </script>
     @endpush
 

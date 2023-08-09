@@ -20,7 +20,7 @@
 <body class="relative font-inter">
     <!-- Navbar -->
     <nav
-        class="container top-0 fixed z-40 bg-gradient-to-b from-white to-white/50 flex flex-row items-center justify-between py-6 md:relative md:py-10">
+        class="container fixed top-0 z-40 flex flex-row items-center justify-between py-6 bg-gradient-to-b from-white to-white/50 md:relative md:py-10">
         <div class="relative flex w-full" x-data="{ open: false }">
             <a href="#" class="z-50 block mr-24">
                 <img class="max-h-12" src="dist/img/logo.png" alt="logo">
@@ -63,8 +63,8 @@
         <h3 class="text-base font-semibold text-black/70">All the new posts</h3>
     </div>
     <div class="container grid grid-cols-3 gap-10">
-        <div class="flex flex-col order-2 md:order-1 col-span-3 md:col-span-2 gap-6">
-            <a href="#" class="flex flex-col w-full recent-post group">
+        <div class="flex flex-col order-2 col-span-3 gap-6 md:order-1 md:col-span-2">
+            <a href="{{ route('blog.show', $latestPost->slug) }}" class="flex flex-col w-full recent-post group">
                 <img src="{{ asset('storage/images/' . $latestPost->thumbnail) }}" alt=""
                     class="w-full mb-6 rounded aspect-video group-hover:shadow-lg">
                 <div class="flex flex-col gap-6 description">
@@ -76,7 +76,7 @@
                     </div>
                     <div>
                         <h3>
-                            <span class="mb-1 text-2xl md:text-3xl font-bold link-post">
+                            <span class="mb-1 text-2xl font-bold md:text-3xl link-post">
                                 {{ $latestPost->title }}
                             </span>
                         </h3>
@@ -87,12 +87,12 @@
             </a>
             @foreach ($articles as $article)
                 <a href="{{ route('blog.show', $article->slug) }}"
-                    class="flex flex-col md:flex-row items-center w-full gap-6 group">
+                    class="flex flex-col items-center w-full gap-6 md:flex-row group">
                     <div class="w-full md:w-5/12">
                         <img src="{{ asset('storage/images/' . $article->thumbnail) }}" alt=""
                             class="w-full mb-6 rounded aspect-video group-hover:shadow-lg">
                     </div>
-                    <div class="w-full flex flex-col md:w-7/12 gap-2 description">
+                    <div class="flex flex-col w-full gap-2 md:w-7/12 description">
                         <div class="flex items-center gap-3">
                             <span
                                 class="inline-block px-4 py-1 text-xs font-semibold text-white capitalize bg-purple-600 rounded-full">{{ $article->category->name }}</span>
@@ -119,17 +119,17 @@
                         <li class="disabled">
                             <span>&lsaquo;</span>
                         </li>
-                        <li class="w-8 h-8 rounded-full justify-center flex items-center bg-sky-400"><span
+                        <li class="flex items-center justify-center w-8 h-8 rounded-full bg-sky-400"><span
                                 class="text-white">1</span></li>
                         <li><a href="#"
-                                class="text-black w-8 h-8 rounded-full justify-center flex items-center hover:bg-black/5">2</a>
+                                class="flex items-center justify-center w-8 h-8 text-black rounded-full hover:bg-black/5">2</a>
                         </li>
                         <li><a href="#"
-                                class="text-black w-8 h-8 rounded-full justify-center flex items-center hover:bg-black/5">3</a>
+                                class="flex items-center justify-center w-8 h-8 text-black rounded-full hover:bg-black/5">3</a>
                         </li>
                         <li><span class="text-black">...</span></li>
                         <li><a href="#"
-                                class="text-black w-8 h-8 rounded-full justify-center flex items-center hover:bg-black/5">5</a>
+                                class="flex items-center justify-center w-8 h-8 text-black rounded-full hover:bg-black/5">5</a>
                         </li>
                         <li>
                             <a href="#">&rsaquo;</a>
@@ -138,9 +138,9 @@
                 </nav>
             </div>
         </div>
-        <div class="col-span-3 order-1 md:order-2 md:col-span-1">
-            <div class="p-4 md:p-8 rounded-lg border md:border-none" x-data="{ show: false }">
-                <h3 class="text-lg md:text-2xl font-bold" @click="show=!show">Category</h3>
+        <div class="order-1 col-span-3 md:order-2 md:col-span-1">
+            <div class="p-4 border rounded-lg md:p-8 md:border-none" x-data="{ show: false }">
+                <h3 class="text-lg font-bold md:text-2xl" @click="show=!show">Category</h3>
                 <ul class="space-y-2.5 text-sm md:text-base font-semibold mt-6 text-black/70 md:!block"
                     style="display: none" x-show="show" x-transition>
                     @foreach ($categories as $item)
