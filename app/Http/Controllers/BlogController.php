@@ -16,7 +16,7 @@ class BlogController extends Controller
     {
         //
         $latestPost = Article::latest()->first();
-        $articles = Article::latest()->paginate(5);
+        $articles = Article::latest()->paginate(1);
         $categories = Category::all();
         return view('blog', compact('articles', 'categories', 'latestPost'));
     }

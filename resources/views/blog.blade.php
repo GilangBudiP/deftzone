@@ -113,30 +113,8 @@
                     </div>
                 </a>
             @endforeach
-            <div class="pagination">
-                <nav class="w-full py-4">
-                    <ul class="flex flex-row gap-2.5 justify-center items-center font-medium text-base">
-                        <li class="disabled">
-                            <span>&lsaquo;</span>
-                        </li>
-                        <li class="flex items-center justify-center w-8 h-8 rounded-full bg-sky-400"><span
-                                class="text-white">1</span></li>
-                        <li><a href="#"
-                                class="flex items-center justify-center w-8 h-8 text-black rounded-full hover:bg-black/5">2</a>
-                        </li>
-                        <li><a href="#"
-                                class="flex items-center justify-center w-8 h-8 text-black rounded-full hover:bg-black/5">3</a>
-                        </li>
-                        <li><span class="text-black">...</span></li>
-                        <li><a href="#"
-                                class="flex items-center justify-center w-8 h-8 text-black rounded-full hover:bg-black/5">5</a>
-                        </li>
-                        <li>
-                            <a href="#">&rsaquo;</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            {{-- pagintion --}}
+            {{ $articles->links('vendor.pagination.front') }}
         </div>
         <div class="order-1 col-span-3 md:order-2 md:col-span-1">
             <div class="p-4 border rounded-lg md:p-8 md:border-none" x-data="{ show: false }">
