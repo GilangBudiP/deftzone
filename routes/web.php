@@ -18,18 +18,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect()->route('welcome');
-});
-
-Route::view('/', 'welcome')->name('welcome');
+    return view('user.index');
+})->name('homepage');
 
 Route::resource('/blog', BlogController::class)->only(['index', 'show']);
-// Route::get('/blog', function() {
-//     return view('blog');
-// });
-// Route::get('/blog/{slug}', function() {
-//     return view('blog-detail');
-// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');

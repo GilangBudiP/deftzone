@@ -8,12 +8,13 @@ use Illuminate\View\Component;
 
 class UserLayout extends Component
 {
+    public bool $withoutFooter;
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
-        //
+        $this->withoutFooter = false;
     }
 
     /**

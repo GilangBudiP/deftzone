@@ -1,5 +1,5 @@
 <nav
-    class="container top-0 fixed z-40 bg-gradient-to-b from-white to-white/50 flex flex-row items-center justify-between py-6 lg:relative lg:py-10">
+    class="container fixed top-0 z-40 flex flex-row items-center justify-between py-6 bg-gradient-to-b from-white to-white/50 lg:relative lg:py-10">
     <div class="relative flex w-full" x-data="{ open: false }">
         <a href="#" class="z-50 block mr-24">
             <img class="max-h-12" src="{{ asset('dist/img/logo.png') }}" alt="logo">
@@ -16,18 +16,18 @@
             x-show="open">
             <ul class="flex-col items-center gap-10 lg:flex lg:flex-row">
                 <li
-                    class="mb-4 text-base font-bold uppercase lg:mb-0 lg:font-semibold lg:text-sm opacity-60 hover:opacity-100 transition-all duration-500 nav-link">
-                    <a href="{{ route('welcome') }}">Home</a>
+                    class="nav-link {{ request()->is('/') ? 'nav-link-active':'' }}">
+                    <a href="{{ route('homepage') }}">Home</a>
                 </li>
                 <li
-                    class="mb-4 text-base font-bold uppercase lg:mb-0 lg:font-semibold lg:text-sm opacity-60 hover:opacity-100 transition-all duration-500 nav-link">
-                    <a href="{{ route('welcome') }}#services">Services</a>
+                    class="nav-link {{ request()->is('/') && request()->query('services') == '1' ? 'nav-link-active': '' }}">
+                    <a href="{{ route('homepage') }}#services">Services</a>
                 </li>
                 <li
-                    class="mb-4 text-base font-bold uppercase lg:mb-0 lg:font-semibold lg:text-sm opacity-60 hover:opacity-100 transition-all duration-500 nav-link">
+                    class="nav-link {{ request()->is('/') && request()->query('portfolio') == '1' ? 'nav-link-active': '' }}">
                     <a href="#">Portfolio</a>
                 </li>
-                <li class="mb-4 text-base font-bold uppercase lg:mb-0 lg:font-semibold lg:text-sm opacity-100 nav-link">
+                <li class="nav-link {{ (strpos(Route::currentRouteName(), 'blog') === 0) ? 'nav-link-active' : '' }}">
                     <a href="{{ route('blog.index') }}">Blog</a>
                 </li>
             </ul>

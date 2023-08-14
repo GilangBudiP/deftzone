@@ -1,4 +1,7 @@
 <x-user-layout>
+    <x-slot:title>
+        {{ $article->title }} - Deftzone Indonesia Blog
+    </x-slot:title>
     <!-- Section Title -->
     <div class="container grid items-end grid-cols-1 gap-10 py-6 mt-20 lg:py-20 lg:mt-0 lg:grid-cols-2">
         <div class="">

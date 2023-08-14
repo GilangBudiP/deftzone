@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ config('app.name', 'Deftzone Indonesia - Digital Agency') }}</title>
+    <title>{{ $title }}</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('dist/img/favicon.ico') }}">
 
     <!-- Fonts -->
@@ -28,7 +28,11 @@
     <!-- Content -->
     {{ $slot }}
     <!-- Footer -->
-    @include('layouts._partials.user.footer')
+    @if ($withoutFooter == false)
+        @include('layouts._partials.user.footer')
+    @else
+        @include('layouts._partials.user.simple-footer')
+    @endif
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="./dist/js/tiny-slider/min/tiny-slider.js"></script>
     <script>

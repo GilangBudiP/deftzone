@@ -43,9 +43,19 @@
 }
 
 .nav-link {
-    @apply link-underline link-underline-black;
+    @apply mb-4 text-base font-bold uppercase transition-all duration-500 link-underline link-underline-black lg:mb-0 lg:font-semibold lg:text-sm opacity-60 hover:opacity-100;
+}
+
+.nav-link-active {
+    background-image: linear-gradient(transparent, transparent), linear-gradient(#000, #000);
+    background-size: 100% 3px;
+    opacity: 1;
 }
 
 .blog-content {
     @apply prose lg:prose-xl;
+}
+
+.blog-content h1, .blog-content h2, .blog-content h3, .blog-content h4, .blog-content h5, .blog-content h6 {
+    @apply scroll-mt-10;
 }
